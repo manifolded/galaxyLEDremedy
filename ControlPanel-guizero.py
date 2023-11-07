@@ -15,9 +15,9 @@ my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
 loop_iteration_period = 20 # msec
 
 displays = ["none", "rainbow", "galaxy", "starfield"]
-galaxy = RainbowAndDerivs()
+galaxy = RainbowAndDerivs.Galaxy()
 stars = StarField()
-implementations = [None, None, galaxy.iteration(), stars.iteration()]
+implementations = [None, None, galaxy.iteration, stars.iteration]
 current_display = 0
 
 # Display codes can't be blocking so they have to be some sort of thread. We have to be able 
@@ -28,6 +28,8 @@ def loop_iteration():
     global current_display
     if current_display >= 2:
         implementations[current_display]
+        # No drawing is allowed in the display code, so it must get invoked here.
+        my_strip.show()
     else:
         my_strip.fill((0,0,0))
         my_strip.show()
