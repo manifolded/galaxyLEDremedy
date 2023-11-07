@@ -43,6 +43,7 @@ def galaxyFrame(offset_idx, num_pixels, num_hues, my_strip):
 
 
 def iteration(my_strip):
+    global offset_idx
     galaxyFrame(offset_idx, num_pixels, num_hues, my_strip)
     my_strip.show()
 
