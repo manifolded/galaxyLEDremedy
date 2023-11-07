@@ -15,7 +15,9 @@ my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
 loop_iteration_period = 20 # msec
 
 displays = ["none", "rainbow", "galaxy", "starfield"]
-implementations = [None, None, RainbowAndDerivs.iteration(), StarField.iteration()]
+galaxy = RainbowAndDerivs()
+stars = StarField()
+implementations = [None, None, galaxy.iteration(), stars.iteration()]
 current_display = 0
 
 # Display codes can't be blocking so they have to be some sort of thread. We have to be able 
