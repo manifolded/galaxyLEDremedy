@@ -1,16 +1,7 @@
 import time
-import board
-import neopixel
 import random
-import sys
 
 num_pixels = 300
-iteration_wait_ms = 0
-terminal_wait_ms = 5000
-
-my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
-
-# This one is all about brightness since the only color is white.
 
 ave_interval = 2
 ave_duration = 0.1
@@ -46,7 +37,7 @@ def instantiate_star(new_star, my_strip):
 def testForInstantiation(new_star):
     return time.time() >= new_star['inception_time'] and not new_star['instantiated']
 
-def destroy_stars(current_stars):
+def destroy_stars(current_stars, my_strip):
     for star in current_stars:
         if time.time() > star['destruction_time']:
             my_strip[star['pixel_index']] = (0,0,0)
@@ -58,34 +49,22 @@ def destroy_stars(current_stars):
             current_stars.append(replacement_star)
             # leave this star to be initialized on the next event loop iteration
 
-start_time = time.time()
-fixed_duration = 10
-
-##  static create_star
-# new_star = define_star()
-# current_stars.append(new_star)
-# new_star_idx = len(current_stars) - 1
-# print(new_star_idx)
-# print(new_star)
-# instantiate_star(new_star, my_strip)
-
 # initialize stars
 for star_count in range(0, max_stars):
     new_star = define_star()
     current_stars.append(new_star)
-    if testForInstantiation(new_star):
-        instantiate_star(new_star, my_strip)
+    # Don't instantiate stars until looping.
+    # if testForInstantiation(new_star):
+    #     instantiate_star(new_star, my_strip)
 
 # evolve stars
-while time.time() < start_time + fixed_duration:
+def iteration(my_strip):
+    global current_stars
     # Check if new_star is ready yet and if so instantiate
     for star in current_stars:
-        # if testForInstantiation(star):
-        if True:
+        if testForInstantiation(star):
             instantiate_star(star, my_strip)
     # Clean up any expired stars
     destroy_stars(current_stars)
 
-my_strip.fill((0,0,0))
-my_strip.show()
 

@@ -1,6 +1,4 @@
 import time
-import board
-import neopixel
 
 num_hues = 30
 num_pixels = 300
