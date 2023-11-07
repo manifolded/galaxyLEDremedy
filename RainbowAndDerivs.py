@@ -64,7 +64,7 @@ while run:
     time.sleep(iteration_wait_ms/1000.0)
 
     offset_idx += offset_speed
-    offset_idx = offset_idx%num_pixels:
+    offset_idx = offset_idx%num_pixels
 
 # Clean up
 my_strip.fill((0,0,0))
