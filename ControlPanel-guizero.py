@@ -8,10 +8,10 @@ button_width = 30
 button_height = 6
 
 def execute_rainbow():
-    subprocess.run(["python", "./RainbowAndDerivs.py"])
+    subprocess.run(["python3", "/home/pi/Documents/projects/galaxyLEDremedy/RainbowAndDerivs.py"])
 
 def execute_starfield():
-    subprocess.run(["python", "./StarField.py"])
+    subprocess.run(["python3", "/home/pi/Documents/projects/galaxyLEDremedy/StarField.py"])
 
 app = App("Galaxy LED Control Panel", width=touch_width, height=touch_height)
 
