@@ -28,11 +28,12 @@ def loop_body_iteration():
     global current_display
     global my_strip
     if current_display == 2:
-        return galaxy.iteration(my_strip)
+        galaxy.iteration(my_strip)
     elif current_display == 3:
-        return stars.iteration(my_strip)
+        stars.iteration(my_strip)
     else:
-        return my_strip.fill((0,0,0))
+        my_strip.fill((0,0,0))
+        # freezes, but does not clear, despite what this implies
     my_strip.show()
 
 def execute_galaxy():
