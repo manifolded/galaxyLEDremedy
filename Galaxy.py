@@ -1,4 +1,4 @@
-import HueToRGB
+from HueToRGB import rgbFromHue
 
 class Galaxy:
     def __init__(self) -> None:
@@ -17,7 +17,7 @@ class Galaxy:
             hue_idx = (pixel_idx+self.offset_idx)%self.num_hues
             hue_value_dec_unit = hue_idx/self.num_hues
             galaxy_hue = self.galaxyHue(hue_value_dec_unit)
-            my_strip[pixel_idx] = HueToRGB.rgbFromHue(galaxy_hue*255)
+            my_strip[pixel_idx] = rgbFromHue(galaxy_hue*255)
 
     # This is the atom that is repeated endlessly to form the display
     # It is to be called from the parent code as the iterations of the loop,
