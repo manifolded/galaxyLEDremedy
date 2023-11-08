@@ -69,7 +69,7 @@ button3 = PushButton(app, text="Terminate Diplays", command=terminate_display,
 
 # execute main body loop_iteration periodically
 null_text = Text(app, text="1")
-null_text.repeat(1000, loop_body_iteration())
+null_text.repeat(1000, lambda: loop_body_iteration())
 app.display()
 
 
