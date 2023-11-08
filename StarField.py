@@ -14,9 +14,9 @@ class Stars:
         current_stars = []
 
         # initialize first stars
-        for _ in range(0, self.max_stars):
+        for _ in range(0, max_stars):
             new_star = self.define_star()
-            self.current_stars.append(new_star)
+            current_stars.append(new_star)
 
 
     def define_star(self):
