@@ -1,6 +1,5 @@
-import HueToRGB
-class Galaxy:
-
+from HueToRGB import rgbFromHue
+class Rainbow:
     def __init__(self) -> None:
         self.num_hues = 30
         self.num_pixels = 300
@@ -12,25 +11,13 @@ class Galaxy:
         for pixel_idx in range(self.num_pixels):
             hue_idx = (pixel_idx+offset_idx)%self.num_hues 
             hue_value_int_rep = (hue_idx/self.num_hues)*255
-            my_strip[pixel_idx] = HueToRGB.rgbFromHue(hue_value_int_rep)
-
-    def galaxyHue(self, hue_value_dec_unit):
-        return 0.5*hue_value_dec_unit + 0.5
-
-    # Ultimately, galaxy frames should have scattered white pixels?
-    #   Mark is as a future task
-    def galaxyFrame(self, my_strip):
-        for pixel_idx in range(self.num_pixels):
-            hue_idx = (pixel_idx+self.offset_idx)%self.num_hues
-            hue_value_dec_unit = hue_idx/self.num_hues
-            galaxy_hue = self.galaxyHue(hue_value_dec_unit)
-            my_strip[pixel_idx] = HueToRGB.rgbFromHue(galaxy_hue*255)
+            my_strip[pixel_idx] = rgbFromHue(hue_value_int_rep)
 
     # This is the atom that is repeated endlessly to form the display
     # It is to be called from the parent code as the iterations of the loop,
     # thus the absence of a loop here.
     def iteration(self, my_strip):
-        self.galaxyFrame(my_strip)
+        self.rainbowFrame(my_strip)
         my_strip.show()
 
         self.offset_idx += self.offset_speed

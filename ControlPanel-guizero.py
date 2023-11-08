@@ -27,7 +27,9 @@ current_display = 0
 def loop_body_iteration():
     global current_display
     global my_strip
-    if current_display == 2:
+    if current_display == 1:
+        rainbow.iteration(my_strip)
+    elif current_display == 2:
         galaxy.iteration(my_strip)
     elif current_display == 3:
         stars.iteration(my_strip)
@@ -35,6 +37,10 @@ def loop_body_iteration():
         my_strip.fill((0,0,0))
         # freezes, but does not clear, despite what this implies
     my_strip.show()
+
+def execute_rainbow():
+    global current_display
+    current_display = 1
 
 def execute_galaxy():
     global current_display
@@ -55,14 +61,17 @@ Text(title_box, text="Theme Selection (Galaxy)")
 
 button_box = Box(app, layout="grid")
 
-button1 = PushButton(button_box, text="View the Sea of Galatic Colors", command=execute_galaxy, 
+
+button1 = PushButton(button_box, text="View the Sweeping Rainbow", command=execute_rainbow,
                      width=button_width, height=button_height, grid=[0, 0])
-button2 = PushButton(button_box, text="View a Field of Stars", command=execute_starfield,
+button2 = PushButton(button_box, text="View the Sea of Galatic Colors", command=execute_galaxy, 
                      width=button_width, height=button_height, grid=[1, 0])
-button3 = PushButton(app, text="Terminate Diplays", command=terminate_display,
+button3 = PushButton(button_box, text="View a Field of Stars", command=execute_starfield,
+                     width=button_width, height=button_height, grid=[2, 0])
+button4 = PushButton(app, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height)
 
-# execute main body loop_iteration periodically
+# execute main body loop iteration periodically
 null_text = Text(app, text="1")
 null_text.repeat(loop_iteration_period, lambda: loop_body_iteration())
 app.display()
