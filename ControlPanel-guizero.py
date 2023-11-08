@@ -16,7 +16,7 @@ loop_iteration_period = 20 # msec
 
 displays = ["none", "rainbow", "galaxy", "starfield"]
 galaxy = RainbowAndDerivs.Galaxy()
-stars = StarField()
+stars = StarField.Stars()
 implementations = [None, None, galaxy.iteration, stars.iteration]
 current_display = 0
 
