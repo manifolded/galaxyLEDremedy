@@ -23,8 +23,9 @@ current_display = 0
 # Display codes can't be blocking so they have to be some sort of thread. We have to be able 
 # to click the terminate button. One main loop isn't very appealing since the codes are so 
 # different. Separate loops which terminate on command is more appealing.
-def loop_iteration(my_strip):
+def loop_iteration():
     global current_display
+    global my_strip
     if current_display == 2:
         galaxy.iteration(my_strip)
     elif current_display == 3:
