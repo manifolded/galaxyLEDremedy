@@ -35,6 +35,7 @@ class Stars:
 
     # define_star() must be called before instantiate_star()
     def instantiate_star(self, new_star, my_strip):
+        # Wait, this is no longer allowed. But without it the function is NULL. Add to to-do list.
         my_strip[new_star['pixel_index']] = (
             new_star['brightness'],
             new_star['brightness'],
@@ -45,11 +46,9 @@ class Stars:
     def testForInstantiation(self, new_star):
         return time.time() >= new_star['inception_time'] and not new_star['instantiated']
 
-    def destroy_stars(self, my_strip):
+    def remove_stars(self):
         for star in self.current_stars:
             if time.time() > star['destruction_time']:
-                my_strip[star['pixel_index']] = (0,0,0)
-                my_strip.show()
                 self.current_stars.remove(star)
                 # lastly, everytime you destroy a star you create a new one.
                 # Must be done here since here we can replace them
@@ -65,6 +64,6 @@ class Stars:
             if self.testForInstantiation(star):
                 self.instantiate_star(star, my_strip)
         # Clean up any expired stars
-        self.destroy_stars()
+        self.remove_stars()
 
 
