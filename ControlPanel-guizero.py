@@ -60,6 +60,7 @@ def terminate_display():
 def quit_panel():
     terminate_display()
     time.wait(2.*loop_iteration_period/1000.0)
+    app.destroy()
     sys.exit()
 
 app = App("Galaxy LED Control Panel", width=touch_width, height=touch_height)
