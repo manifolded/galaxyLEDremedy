@@ -16,7 +16,7 @@ class Stars:
         # initialize first stars
         for _ in range(0, self.max_stars):
             new_star = self.define_star()
-            current_stars.append(new_star)
+            self.current_stars.append(new_star)
 
 
     def define_star(self):
