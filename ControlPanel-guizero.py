@@ -24,21 +24,22 @@ current_display = 0
 # Display codes can't be blocking so they have to be some sort of thread. We have to be able 
 # to click the terminate button. One main loop isn't very appealing since the codes are so 
 # different. Separate loops which terminate on command is more appealing.
-def loop_iteration():
+def loop_body_iteration():
     global current_display
     global my_strip
     if current_display == 2:
         print('2 selected. Invoke galaxy.')
-        galaxy.iteration(my_strip)
+        return galaxy.iteration(my_strip)
     elif current_display == 3:
         print('3 selected. Invoke stars.')
-        stars.iteration(my_strip)
+        return stars.iteration(my_strip)
     else:
         print('Neither 2 nor 3 selected. Paint black.')
-        my_strip.fill((0,0,0))
-    # No drawing is allowed in the display code, so it must get invoked here.
-    my_strip.show()
+        return my_strip.fill((0,0,0))
 
+    # No drawing is allowed in the display code, so it must get invoked here.
+#    my_strip.show()
+    # This line is necessary, so it'll have to be implemented back in the display iteration() codes.
 
 def execute_galaxy():
     global current_display
@@ -68,7 +69,7 @@ button3 = PushButton(app, text="Terminate Diplays", command=terminate_display,
 
 # execute main body loop_iteration periodically
 null_text = Text(app, text="1")
-null_text.repeat(1000, time.time())
+null_text.repeat(1000, loop_body_iteration())
 app.display()
 
 
