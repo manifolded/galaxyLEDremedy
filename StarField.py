@@ -67,6 +67,6 @@ class Stars:
             if self.testForInstantiation(star):
                 self.instantiate_star(star, my_strip)
         # Clean up any expired stars
-        self.remove_stars()
+        self.remove_stars(my_strip)
         my_strip.show()
 
