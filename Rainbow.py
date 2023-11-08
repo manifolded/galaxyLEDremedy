@@ -7,9 +7,8 @@ class Rainbow:
         self.offset_speed = 3
 
     def rainbowFrame(self, my_strip):
-        global offset_idx
         for pixel_idx in range(self.num_pixels):
-            hue_idx = (pixel_idx+offset_idx)%self.num_hues 
+            hue_idx = (pixel_idx+self.offset_idx)%self.num_hues 
             hue_value_int_rep = (hue_idx/self.num_hues)*255
             my_strip[pixel_idx] = rgbFromHue(hue_value_int_rep)
 
