@@ -4,6 +4,7 @@ import board
 import neopixel
 import RainbowAndDerivs
 import StarField
+import time
 
 touch_width = 800
 touch_height = 480
@@ -66,8 +67,8 @@ button3 = PushButton(app, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height)
 
 # execute main body loop_iteration periodically
-# app.repeat(loop_iteration_period, loop_iteration())
-loop_iteration()
+null_text = Text(app, text="1")
+null_text.repeat(1000, time.time())
 app.display()
 
 
