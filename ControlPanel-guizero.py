@@ -2,7 +2,7 @@
 from guizero import App, PushButton, Box, Text
 import board
 import neopixel
-import RainbowAndDerivs
+import Galaxy
 import StarField
 import time
 
@@ -15,7 +15,7 @@ num_pixels = 300
 my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
 loop_iteration_period = 20 # msec
 
-galaxy = RainbowAndDerivs.Galaxy()
+galaxy = Galaxy.Galaxy()
 stars = StarField.Stars()
 # displays = ["none", "rainbow", "galaxy", "starfield"]
 # implementations = [None, None, galaxy.iteration(), stars.iteration]
