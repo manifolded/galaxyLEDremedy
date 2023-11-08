@@ -28,11 +28,11 @@ class Galaxy:
         blue = int(255*self.softPlateau(hue_value_int_rep/256, 0.5, 0.8333, 0.1666))
         return (red, green, blue)
 
-    def rainbowFrame(self, num_pixels, num_hues, my_strip):
+    def rainbowFrame(self, my_strip):
         global offset_idx
-        for pixel_idx in range(num_pixels):
-            hue_idx = (pixel_idx+offset_idx)%num_hues 
-            hue_value_int_rep = (hue_idx/num_hues)*255
+        for pixel_idx in range(self.num_pixels):
+            hue_idx = (pixel_idx+offset_idx)%self.num_hues 
+            hue_value_int_rep = (hue_idx/self.num_hues)*255
             my_strip[pixel_idx] = self.rgbFromHue(hue_value_int_rep)
 
     def galaxyHue(self, hue_value_dec_unit):
@@ -40,11 +40,11 @@ class Galaxy:
 
     # Ultimately, galaxy frames should have scattered white pixels?
     #   Mark is as a future task
-    def galaxyFrame(self, num_pixels, num_hues, my_strip):
+    def galaxyFrame(self, my_strip):
         global offset_idx
-        for pixel_idx in range(num_pixels):
-            hue_idx = (pixel_idx+offset_idx)%num_hues
-            hue_value_dec_unit = hue_idx/num_hues
+        for pixel_idx in range(self.num_pixels):
+            hue_idx = (pixel_idx+offset_idx)%self.num_hues
+            hue_value_dec_unit = hue_idx/self.num_hues
             galaxy_hue = self.galaxyHue(hue_value_dec_unit)
             my_strip[pixel_idx] = self.rgbFromHue(galaxy_hue*255)
 
@@ -53,7 +53,8 @@ class Galaxy:
     # thus the absence of a loop here.
     def iteration(self, my_strip):
         global offset_idx
-        self.galaxyFrame(offset_idx, self.num_pixels, self.num_hues, my_strip)
+        self.galaxyFrame(my_strip)
+        my_strip.show()
 
         offset_idx += self.offset_speed
         offset_idx = offset_idx%self.num_pixels
