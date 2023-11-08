@@ -33,10 +33,7 @@ def loop_body_iteration():
         return stars.iteration(my_strip)
     else:
         return my_strip.fill((0,0,0))
-
-    # No drawing is allowed in the display code, so it must get invoked here.
-#    my_strip.show()
-    # This line is necessary, so it'll have to be implemented back in the display iteration() codes.
+    my_strip.show()
 
 def execute_galaxy():
     global current_display
