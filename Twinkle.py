@@ -19,3 +19,9 @@ def iteration(my_strip):
     my_strip.show()
     time.sleep(loop_iteration_period*1000.0)
 
+while True:
+    iteration(my_strip)
+
+
+
+
