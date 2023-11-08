@@ -4,17 +4,17 @@ import random
 class Stars:
 
     def __init__(self) -> None:
-        num_pixels = 300
+        self.num_pixels = 300
 
-        ave_interval = 2
-        ave_duration = 0.1
-        ave_brightness = 50.0
+        self.ave_interval = 2
+        self.ave_duration = 0.1
+        self.ave_brightness = 50.0
 
-        max_stars = 100
-        current_stars = []
+        self.max_stars = 100
+        self.current_stars = []
 
         # initialize first stars
-        for _ in range(0, max_stars):
+        for _ in range(0, self.max_stars):
             new_star = self.define_star()
             current_stars.append(new_star)
 
