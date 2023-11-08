@@ -27,12 +27,14 @@ def loop_iteration():
     global current_display
     global my_strip
     if current_display == 2:
+        print('2 selected. Invoke galaxy.')
         galaxy.iteration(my_strip)
     elif current_display == 3:
+        print('3 selected. Invoke stars.')
         stars.iteration(my_strip)
     else:
+        print('Neither 2 nor 3 selected. Paint black.')
         my_strip.fill((0,0,0))
-        my_strip.show()
     # No drawing is allowed in the display code, so it must get invoked here.
     my_strip.show()
 
@@ -64,7 +66,8 @@ button3 = PushButton(app, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height)
 
 # execute main body loop_iteration periodically
-app.repeat(loop_iteration_period, loop_iteration())
+# app.repeat(loop_iteration_period, loop_iteration())
+loop_iteration()
 app.display()
 
 
