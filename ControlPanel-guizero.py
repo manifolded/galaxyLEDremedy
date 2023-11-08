@@ -28,13 +28,10 @@ def loop_body_iteration():
     global current_display
     global my_strip
     if current_display == 2:
-        print('2 selected. Invoke galaxy.')
         return galaxy.iteration(my_strip)
     elif current_display == 3:
-        print('3 selected. Invoke stars.')
         return stars.iteration(my_strip)
     else:
-        print('Neither 2 nor 3 selected. Paint black.')
         return my_strip.fill((0,0,0))
 
     # No drawing is allowed in the display code, so it must get invoked here.

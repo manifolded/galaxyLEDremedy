@@ -46,15 +46,18 @@ class Stars:
     def testForInstantiation(self, new_star):
         return time.time() >= new_star['inception_time'] and not new_star['instantiated']
 
-    def remove_stars(self):
+    def remove_stars(self, my_strip):
         for star in self.current_stars:
             if time.time() > star['destruction_time']:
+                my_strip[star['pixel index']] = (0,0,0)
                 self.current_stars.remove(star)
+
                 # lastly, everytime you destroy a star you create a new one.
                 # Must be done here since here we can replace them
                 replacement_star = self.define_star()
                 self.current_stars.append(replacement_star)
                 # leave this star to be initialized on the next event loop iteration
+
 
 
     # evolve stars
