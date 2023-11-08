@@ -17,7 +17,7 @@ def twinkleFrame(my_strip):
 def iteration(my_strip):
     twinkleFrame(my_strip)
     my_strip.show()
-    time.sleep(loop_iteration_period*1000.0)
+    time.sleep(loop_iteration_period/1000.0)
 
 while True:
     iteration(my_strip)
