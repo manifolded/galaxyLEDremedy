@@ -49,7 +49,7 @@ class Stars:
     def remove_stars(self, my_strip):
         for star in self.current_stars:
             if time.time() > star['destruction_time']:
-                my_strip[star['pixel index']] = (0,0,0)
+                my_strip[star['pixel_index']] = (0,0,0)
                 self.current_stars.remove(star)
 
                 # lastly, everytime you destroy a star you create a new one.
