@@ -41,9 +41,8 @@ class Galaxy:
     # Ultimately, galaxy frames should have scattered white pixels?
     #   Mark is as a future task
     def galaxyFrame(self, my_strip):
-        global offset_idx
         for pixel_idx in range(self.num_pixels):
-            hue_idx = (pixel_idx+offset_idx)%self.num_hues
+            hue_idx = (pixel_idx+self.offset_idx)%self.num_hues
             hue_value_dec_unit = hue_idx/self.num_hues
             galaxy_hue = self.galaxyHue(hue_value_dec_unit)
             my_strip[pixel_idx] = self.rgbFromHue(galaxy_hue*255)
@@ -52,11 +51,10 @@ class Galaxy:
     # It is to be called from the parent code as the iterations of the loop,
     # thus the absence of a loop here.
     def iteration(self, my_strip):
-        global offset_idx
         self.galaxyFrame(my_strip)
         my_strip.show()
 
-        offset_idx += self.offset_speed
-        offset_idx = offset_idx%self.num_pixels
+        self.offset_idx += self.offset_speed
+        self.offset_idx = self.offset_idx%self.num_pixels
 
 

@@ -65,5 +65,5 @@ class Stars:
                 self.instantiate_star(star, my_strip)
         # Clean up any expired stars
         self.remove_stars()
-
+        my_strip.show()
 
