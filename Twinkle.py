@@ -11,7 +11,8 @@ loop_iteration_period = 20 # msec
 
 def twinkleFrame(my_strip):
     for pixel_idx in range(0, num_pixels):
-        my_strip[pixel_idx] = int((1.0,1.0,1.0)*random.randint(0, 255))
+        red = random.randint(0, 255)
+        my_strip[pixel_idx] = (red, red, red) # to get white
 
 
 def iteration(my_strip):
