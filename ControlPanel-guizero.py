@@ -6,6 +6,7 @@ import Rainbow
 import Galaxy
 import StarField
 import time
+import sys
 
 touch_width = 800
 touch_height = 480
@@ -56,22 +57,28 @@ def terminate_display():
     global current_display
     current_display = 0
 
+def quit_panel():
+    terminate_display()
+    time.wait(2.*loop_iteration_period/1000.0)
+    sys.exit()
+
 app = App("Galaxy LED Control Panel", width=touch_width, height=touch_height)
 
-title_box = Box(app, width=400, height=100, align="top", border=True)
+title_box = Box(app, width=400, height=50, align="top", border=True)
 Text(title_box, text="Theme Selection (Galaxy)")
 
 button_box = Box(app, layout="grid")
-
-
+op_box = Box(app, layout="grid")
 button1 = PushButton(button_box, text="View the Sweeping Rainbow", command=execute_rainbow,
                      width=button_width, height=button_height, grid=[0, 0])
 button2 = PushButton(button_box, text="View the Sea of Galatic Colors", command=execute_galaxy, 
                      width=button_width, height=button_height, grid=[1, 0])
 button3 = PushButton(button_box, text="View a Field of Stars", command=execute_starfield,
                      width=button_width, height=button_height, grid=[2, 0])
-button4 = PushButton(app, text="Terminate Diplays", command=terminate_display,
-                     width=button_width, height=button_height)
+button4 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
+                     width=button_width, height=button_height, grid=[0, 0])
+button5 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
+                     width=button_width, height=button_height, grid=[1, 0])
 
 # execute main body loop iteration periodically
 null_text = Text(app, text="1")
