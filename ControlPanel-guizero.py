@@ -59,7 +59,8 @@ def terminate_display():
 
 def quit_panel():
     terminate_display()
-    time.wait(2.*loop_iteration_period/1000.0)
+    my_strip.fill((0,0,0))
+    my_strip.show()
     app.destroy()
     sys.exit()
 
