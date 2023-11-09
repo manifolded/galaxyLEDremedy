@@ -7,6 +7,7 @@ num_pixels = 300
 my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
 loop_iteration_period = 20 # msec
 dark_threshold = 0.99
+max_brightness = 128
 
 # Random brightness assigned to every pixel, updated periodically
 
@@ -17,9 +18,8 @@ dark_threshold = 0.99
 
 def twinkleFrame(my_strip):
     for pixel_idx in range(0, num_pixels):
-        red = 0 if random.uniform(0., 1.) < dark_threshold else random.randint(0, 255)
-        if red != 0:
-            my_strip[pixel_idx] = (red, red, red) # to get white
+        red = 0 if random.uniform(0., 1.) < dark_threshold else random.randint(0, max_brightness)
+        my_strip[pixel_idx] = (red, red, red) # to get white
 
 
 def iteration(my_strip):
