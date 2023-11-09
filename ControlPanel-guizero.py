@@ -15,7 +15,7 @@ button_height = 6
 
 num_pixels = 300
 my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
-loop_iteration_period = 1000 # msec
+loop_iteration_period = 20 # msec
 
 rainbow = Rainbow.Rainbow()
 galaxy = Galaxy.Galaxy()
