@@ -100,6 +100,7 @@ button4 = PushButton(button_box, text="View a Flaring Star Field", command=execu
 button5 = PushButton(button_box, text="Christmas Colors", command=execute_christmas,
                      width=display_button_width, height=display_button_height, grid=[0, 2])
 # How do I insert a separator here?
+spacer_box = Box(app, width=touch_width, height=20, align="top", border=True)
 button6 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height, grid=[0, 0])
 button7 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
