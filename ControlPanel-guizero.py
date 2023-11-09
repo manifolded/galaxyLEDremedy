@@ -6,6 +6,7 @@ import Rainbow
 import Galaxy
 import StarField
 import Flare
+import Christmas
 import time
 import sys
 
@@ -24,8 +25,9 @@ rainbow = Rainbow.Rainbow()
 galaxy = Galaxy.Galaxy()
 stars = StarField.Stars()
 flares = Flare.Flare()
-# displays = ["none", "rainbow", "galaxy", "starfield", "flares"]
-# implementations = [None, None, galaxy.iteration(), stars.iteration]
+xmas = Christmas.Christmas()
+# displays = ["none", "rainbow", "galaxy", "starfield", "flares", "christmas"]
+# implementations = [None, None, galaxy.iteration(), stars.iteration, flares.iteration, christmas.iteration]
 current_display = 0
 
 # Display codes can't be blocking so they have to be some sort of thread. We have to be able 
@@ -42,6 +44,8 @@ def loop_body_iteration():
         stars.iteration(my_strip)
     elif current_display == 4:
         flares.iteration(my_strip)
+    elif current_display == 5:
+        xmas.iteration(my_strip)
     else:
         my_strip.fill((0,0,0))
         # freezes, but does not clear, despite what this implies
@@ -62,6 +66,10 @@ def execute_starfield():
 def execute_flares():
     global current_display
     current_display = 4
+
+def execute_christmas():
+    global current_display
+    current_display = 5
 
 def terminate_display():
     global current_display
@@ -89,12 +97,15 @@ button3 = PushButton(button_box, text="View a Field of Stars", command=execute_s
                      width=display_button_width, height=display_button_height, grid=[0, 1])
 button4 = PushButton(button_box, text="View a Flaring Star Field", command=execute_flares,
                      width=display_button_width, height=display_button_height, grid=[1, 1])
-null_text = Text(app, text=" ")
-button5 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
+button5 = PushButton(button_box, text="Christmas Colors", command=execute_christmas,
+                     width=display_button_width, height=display_button_height, grid=[0, 2])
+# How do I insert a separator here?
+button6 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height, grid=[0, 0])
-button6 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
+button7 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
                      width=button_width, height=button_height, grid=[1, 0])
 
+null_text = Text(app, text=" ")
 # execute main body loop iteration periodically
 null_text.repeat(loop_iteration_period, lambda: loop_body_iteration())
 app.display()
