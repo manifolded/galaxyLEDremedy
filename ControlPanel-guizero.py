@@ -13,6 +13,8 @@ touch_width = 800
 touch_height = 480
 button_width = 30
 button_height = 6
+display_button_width = 20
+display_button_height = 4
 
 num_pixels = 300
 my_strip = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False)
@@ -80,20 +82,20 @@ Text(title_box, text="Theme Selection (Galaxy)")
 button_box = Box(app, layout="grid")
 op_box = Box(app, layout="grid")
 button1 = PushButton(button_box, text="View the Sweeping Rainbow", command=execute_rainbow,
-                     width=button_width, height=button_height, grid=[0, 0])
+                     width=display_button_width, height=display_button_height, grid=[0, 0])
 button2 = PushButton(button_box, text="View the Sea of Galatic Colors", command=execute_galaxy, 
-                     width=button_width, height=button_height, grid=[1, 0])
+                     width=display_button_width, height=display_button_height, grid=[1, 0])
 button3 = PushButton(button_box, text="View a Field of Stars", command=execute_starfield,
-                     width=button_width, height=button_height, grid=[0, 1])
+                     width=display_button_width, height=display_button_height, grid=[0, 1])
 button4 = PushButton(button_box, text="View a Flaring Star Field", command=execute_flares,
-                     width=button_width, height=button_height, grid=[1, 1])
+                     width=display_button_width, height=display_button_height, grid=[1, 1])
+null_text = Text(app, text=" ")
 button5 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height, grid=[0, 0])
 button6 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
                      width=button_width, height=button_height, grid=[1, 0])
 
 # execute main body loop iteration periodically
-null_text = Text(app, text="1")
 null_text.repeat(loop_iteration_period, lambda: loop_body_iteration())
 app.display()
 
