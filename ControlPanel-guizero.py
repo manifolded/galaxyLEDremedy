@@ -5,6 +5,7 @@ import neopixel
 import Rainbow
 import Galaxy
 import StarField
+import Flare
 import time
 import sys
 
@@ -20,7 +21,8 @@ loop_iteration_period = 1000 # msec
 rainbow = Rainbow.Rainbow()
 galaxy = Galaxy.Galaxy()
 stars = StarField.Stars()
-# displays = ["none", "rainbow", "galaxy", "starfield"]
+flares = Flare.Flare()
+# displays = ["none", "rainbow", "galaxy", "starfield", "flares"]
 # implementations = [None, None, galaxy.iteration(), stars.iteration]
 current_display = 0
 
@@ -36,6 +38,8 @@ def loop_body_iteration():
         galaxy.iteration(my_strip)
     elif current_display == 3:
         stars.iteration(my_strip)
+    elif current_display == 4:
+        flares.iteration(my_strip)
     else:
         my_strip.fill((0,0,0))
         # freezes, but does not clear, despite what this implies
@@ -52,6 +56,10 @@ def execute_galaxy():
 def execute_starfield():
     global current_display
     current_display = 3
+
+def execute_flares():
+    global current_display
+    current_display = 4
 
 def terminate_display():
     global current_display
@@ -76,10 +84,12 @@ button1 = PushButton(button_box, text="View the Sweeping Rainbow", command=execu
 button2 = PushButton(button_box, text="View the Sea of Galatic Colors", command=execute_galaxy, 
                      width=button_width, height=button_height, grid=[1, 0])
 button3 = PushButton(button_box, text="View a Field of Stars", command=execute_starfield,
-                     width=button_width, height=button_height, grid=[2, 0])
-button4 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
+                     width=button_width, height=button_height, grid=[0, 1])
+button4 = PushButton(button_box, text="View a Flaring Star Field", command=execute_flares,
+                     width=button_width, height=button_height, grid=[1, 1])
+button5 = PushButton(op_box, text="Terminate Diplays", command=terminate_display,
                      width=button_width, height=button_height, grid=[0, 0])
-button5 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
+button6 = PushButton(op_box, text="Quit this Control Panel", command=quit_panel,
                      width=button_width, height=button_height, grid=[1, 0])
 
 # execute main body loop iteration periodically
