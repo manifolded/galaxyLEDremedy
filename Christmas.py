@@ -13,7 +13,7 @@ class Christmas:
     def genFrame(self, my_strip):
         for pixel_idx in range(0, self.num_pixels):
             # Mod 2 restricts us to two colors, red and white
-            pixel_value = self.a_rgb if (pixel_idx + self.offset_idx)%self.block_size%2 == 0 else self.b_rgb
+            pixel_value = self.a_rgb if (pixel_idx + self.offset_idx)//self.block_size%2 == 0 else self.b_rgb
             my_strip[pixel_idx] = pixel_value
         
 
